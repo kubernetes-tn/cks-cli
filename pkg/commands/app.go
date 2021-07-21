@@ -1,7 +1,7 @@
 package commands
 
 import (
-	"cks-cli/commands/cluster"
+	"cks-cli/pkg/commands/cluster"
 
 	"github.com/urfave/cli/v2"
 )

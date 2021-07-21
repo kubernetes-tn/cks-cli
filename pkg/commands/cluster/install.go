@@ -1,14 +1,14 @@
-package commands
+package cluster
 
 import (
 	_ "embed"
 
-	"cks-cli/commands/utils"
+	"cks-cli/pkg/commands/utils"
 
-	"github.com/urfave/cli"
+	"github.com/urfave/cli/v2"
 )
 
-//go:embed cks-cli/scripts/create-master/dryrun.sh
+//go:embed dryrun.sh
 var installMasterScript string
 
 // ImageRun runs scan on docker image
