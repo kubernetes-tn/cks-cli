@@ -26,6 +26,10 @@ func CheckRequirements(ctx *cli.Context) error {
 }
 
 func InstallMaster(ctx *cli.Context) error {
+	err := CheckRequirements(ctx)
+	if err != nil {
+		return err
+	}
 	values := make(map[string]interface{})
 	values["version"] = ctx.String("version")
 	// fmt.Println(s)
@@ -34,6 +38,10 @@ func InstallMaster(ctx *cli.Context) error {
 }
 
 func InstallWorker(ctx *cli.Context) error {
+	err := CheckRequirements(ctx)
+	if err != nil {
+		return err
+	}
 	values := make(map[string]interface{})
 	values["version"] = ctx.String("version")
 	// fmt.Println(s)
