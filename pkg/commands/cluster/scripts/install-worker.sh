@@ -1,5 +1,7 @@
-KUBE_VERSION={{ .version }};
 #!/bin/sh
+
+# Source: http://kubernetes.io/docs/getting-started-guides/kubeadm/
+KUBE_VERSION={{ .version }};#!/bin/sh
 
 # Source: http://kubernetes.io/docs/getting-started-guides/kubeadm/
 
@@ -17,7 +19,7 @@ sed -i '1s/^/force_color_prompt=yes\n/' ~/.bashrc
 
 
 ### install k8s and docker
-apt-get remove -y docker.io kubelet kubeadm kubectl kubernetes-cni
+apt-get remove -y docker* containerd* kubelet kubeadm kubectl kubernetes-cni
 apt-get autoremove -y
 apt-get install -y etcd-client vim build-essential
 
@@ -53,15 +55,11 @@ systemctl enable kubelet && systemctl start kubelet
 
 
 ### init k8s
-rm /root/.kube/config
 kubeadm reset -f
-kubeadm init --kubernetes-version=${KUBE_VERSION} --ignore-preflight-errors=NumCPU --skip-token-print
-
-mkdir -p ~/.kube
-sudo cp -i /etc/kubernetes/admin.conf ~/.kube/config
-
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+systemctl daemon-reload
+service kubelet start
 
 echo
-echo "### COMMAND TO ADD A WORKER NODE ###"
-kubeadm token create --print-join-command --ttl 0
+echo "EXECUTE ON MASTER: cks cluster create-token"
+echo "THEN RUN THE OUTPUT AS COMMAND HERE TO ADD AS WORKER"
+echo

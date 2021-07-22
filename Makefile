@@ -3,4 +3,4 @@ LDFLAGS=-ldflags "-s -w -X=main.version=$(VERSION)"
 
 .PHONY: build
 build:
-	go build $(LDFLAGS) .
+	GOOS=linux GOARCH=amd64 go build $(LDFLAGS) .
