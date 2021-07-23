@@ -24,4 +24,8 @@
 /Godeps/
 
 # End of https://www.toptal.com/developers/gitignore/api/go
-cks-cli
+cks
+cks-*
+*.pptx
+.env
+public
