@@ -9,6 +9,10 @@ go tool dist list | while read l; do
     if [ "${GOARCH}" = "amd64" ] ||  [ "${GOARCH}" = "arm64" ] ; then
       artifact=cks-${GOOS}-${GOARCH};
       go build -ldflags "-s -w -X=main.version=${VERSION}" -o bin/cks-${GOOS}-${GOARCH} .
-    fi 
+    fi
+    # default binary without suffixes to one arch and one OS
+    if [ "${GOARCH}" = "amd64" ] && [ "${GOOS}" = "linux" ]; then
+      cp bin/cks-${GOOS}-${GOARCH} bin/cks
+    fi
   fi
 done

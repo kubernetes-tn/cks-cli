@@ -1,14 +1,22 @@
 
+# Overview
 
+A comprehensive CLI for CKS exam preparation
+
+# Getting Started
+
+```sh
+docker-compose run --rm cks help
 ```
-cks install k8s-master --version=1.21
 
-cks install k8s-node --master-ip=... --token=<token>
+# Docs
 
-cks install falco
+https://cks.k8s.tn
 
-```
+# Authors
 
-```
-cks cluster install-master --version=1.21
-```
+- @abdennour
+
+# License
+
+[LICENSE](LICENSE)

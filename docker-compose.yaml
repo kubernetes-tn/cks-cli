@@ -1,0 +1,18 @@
+version: '3.9'
+
+
+services:
+  go: &go
+    image: golang:1.16.6-alpine
+    restart: 'no'
+    working_dir: /usr/src/cks-cli
+    volumes:
+      - .:/usr/src/cks-cli
+      - go-modules:/go/pkg/mod
+    entrypoint: go
+  cks:
+    <<: *go
+    entrypoint: ["go", "run", "."]
+
+volumes:
+  go-modules:
