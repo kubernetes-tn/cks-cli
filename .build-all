@@ -1,0 +1,14 @@
+#!/bin/sh
+# go tool dist list | awk -F / '{print "GOOS="$1 " GOARCH=" $2 " go '$restargs' build . "}'
+mkdir -p bin
+VERSION=$(git describe --tags)
+go tool dist list | while read l; do
+  export GOOS=$(echo $l | awk -F / '{print $1}')
+  if [ "${GOOS}" = "linux" ] ||  [ "${GOOS}" = "darwin" ] ; then
+    export GOARCH=$(echo $l | awk -F / '{print $2}');
+    if [ "${GOARCH}" = "amd64" ] ||  [ "${GOARCH}" = "arm64" ] ; then
+      artifact=cks-${GOOS}-${GOARCH};
+      go build -ldflags "-s -w -X=main.version=${VERSION}" -o bin/cks-${GOOS}-${GOARCH} .
+    fi 
+  fi
+done
