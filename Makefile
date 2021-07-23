@@ -35,7 +35,9 @@ release-docs:
 	aws s3 sync ./public/ s3://$(shell bash deploy/cloudformation/get_bucket_website_name.sh)/ --delete --region ap-southeast-1
 
 release-infra:
-	bash deploy/cloudformation/apply.sh
+	echo bash deploy/cloudformation/apply.sh
+	echo do it manually.CFN does not support
+	echo TODO https://github.com/riboseinc/terraform-aws-s3-cloudfront-website/blob/master/sample-site/main.tf
 release:
 	make release-binary
 	make release-docs

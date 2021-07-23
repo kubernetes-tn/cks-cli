@@ -107,17 +107,19 @@ Resources:
               Forward: none
             QueryString: true
         Origins:
+          # Require Custom Origin ( not S3 origin) which not support by Cloudfromation
+          # Accordingly 
           -
             Id: !Sub
                - S3-${sourceBucket}
                - sourceBucket: !Ref AppBucket
             # {bucket}.s3-website-{region}.amazonaws.com
             # {bucket}.s3.{region}.amazonaws.com
-            DomainName: !GetAtt AppBucket.RegionalDomainName
-              #  - ${bucketName}.s3.${region}.amazonaws.com
-              #  - bucketName: !Ref AppBucket
-              #    region: !Ref AWS::Region
-            S3OriginConfig: {}
+            DomainName: !Sub # !GetAtt AppBucket.RegionalDomainName
+               - ${bucketName}.s3-${region}.amazonaws.com
+               - bucketName: !Ref AppBucket
+                 region: !Ref AWS::Region
+            # S3OriginConfig: {}
         # Restrictions:
         #   GeoRestriction:
         #     RestrictionType: none
