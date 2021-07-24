@@ -32,7 +32,7 @@ mkdocs-gen:
 
 release-docs:
 	make mkdocs-gen
-	aws s3 sync ./public/ s3://$(shell bash deploy/cloudformation/get_bucket_website_name.sh)/ --delete --region ap-southeast-1
+	aws s3 sync ./public/ s3://$(BUCKET_WEBSITE)/ --delete --region us-east-1
 
 release-infra:
 	echo bash deploy/cloudformation/apply.sh

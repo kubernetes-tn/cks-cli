@@ -7,3 +7,6 @@
 
 kubectl delete ns demo-falco
 
+
+## check another advanced tuto in this link :
+https://k8s.tn/rdiL4i

@@ -1,0 +1,4 @@
+To discover/customize Falco rules, the following doc should be your best friend:
+
+https://k8s.tn/rd8uLj
+	

@@ -9,5 +9,6 @@ apt-get install -y falco=0.26.1
 systemctl start falco
 systemctl status falco
 
-echo "=== DOCS about FALCO ==="
-echo https://v1-16.docs.kubernetes.io/docs/tasks/debug-application-cluster/falco
+echo "=== What's next ==="
+
+echo try run : cks falco tuto

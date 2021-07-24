@@ -167,5 +167,12 @@ func NewFalcoCommand() *cli.Command {
 				ArgsUsage: "",
 				Action:    falco.Tuto,
 			},
+			{
+				Name:      "rules",
+				Aliases:   []string{"r"},
+				Usage:     "rules falco",
+				ArgsUsage: "",
+				Action:    falco.Rules,
+			},
 		}}
 }
