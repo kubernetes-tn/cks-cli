@@ -1,0 +1,8 @@
+ ____    _    ____ _____ 
+/ ___|  / \  |  _ \_   _|
+\___ \ / _ \ | |_) || |  
+ ___) / ___ \|  _ < | |  
+|____/_/   \_\_| \_\|_|
+### Create Namespace for the demo ###
+
+kubectl create ns demo-falco

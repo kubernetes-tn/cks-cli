@@ -1,0 +1,22 @@
+ ____ _____ _____ ____    _  _   
+/ ___|_   _| ____|  _ \  | || |  
+\___ \ | | |  _| | |_) | | || |_ 
+ ___) || | | |___|  __/  |__   _|
+|____/ |_| |_____|_|        |_|  
+### Validation
+
+# Try to spawn a shell in the pod
+kubectl -n demo-falco exec -it nginx -- sh
+
+
+# Immediately, SSH to the node where falco is installed, and check the log of falco
+tail -f /var/log/syslog | grep falco
+
+## You should see a log entry like the following:
+
+```
+Jul 1 hh:mm:ss <node-name> falco: hh:mm:ss.nnnn: Notice A shell was spawned in a container with an attached terminal (user=root.....
+```
+
+## Discover Falco rules responsible for that detection
+cat /etc/falco/falco_rules.yaml | grep -i -B 8 -A 4 -F "shell was spawned"

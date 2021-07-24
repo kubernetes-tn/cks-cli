@@ -1,0 +1,14 @@
+ ____ _____ _____ ____    ____  
+/ ___|_   _| ____|  _ \  |___ \ 
+\___ \ | | |  _| | |_) |   __) |
+ ___) || | | |___|  __/   / __/ 
+|____/ |_| |_____|_|     |_____|
+### Check where your pod is created
+
+NODE_NAME=$(kubectl -n demo-falco get pod nginx -o jsonpath='{.spec.nodeName}');
+
+kubectl describe node $NODE_NAME
+
+### SSH to that node
+ssh $NODE_NAME
+

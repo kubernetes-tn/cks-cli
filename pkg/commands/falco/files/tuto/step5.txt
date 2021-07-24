@@ -1,0 +1,9 @@
+ _____ _   _ ____  
+| ____| \ | |  _ \ 
+|  _| |  \| | | | |
+| |___| |\  | |_| |
+|_____|_| \_|____/ 
+### Clean up namespace
+
+kubectl delete ns demo-falco
+

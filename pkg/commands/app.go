@@ -2,11 +2,19 @@ package commands
 
 import (
 	"cks-cli/pkg/commands/cluster"
+	"cks-cli/pkg/commands/falco"
 
 	"github.com/urfave/cli/v2"
 )
 
 var (
+	topicFlag = cli.StringFlag{
+		Name:    "topic",
+		Aliases: []string{"t"},
+		Value:   "",
+		Usage:   "Topic from CKS learning objectives",
+		EnvVars: []string{"CKS_TOPIC"},
+	}
 	verisonFlag = cli.StringFlag{
 		Name:    "version",
 		Aliases: []string{"v"},
@@ -39,6 +47,11 @@ var (
 		EnvVars: []string{"CKS_CA_HASH"},
 	}
 
+	// Global flags
+	globalFlags = []cli.Flag{
+		&topicFlag,
+	}
+
 	clusterInstallFlags = []cli.Flag{
 		&verisonFlag,
 	}
@@ -48,6 +61,8 @@ var (
 		&tokenFlag,
 		&caHashFlag,
 	}
+
+	falcoInstallFlags = []cli.Flag{}
 )
 
 func NewApp(version string) *cli.App {
@@ -58,8 +73,8 @@ func NewApp(version string) *cli.App {
 	app := cli.NewApp()
 	app.Name = "cks"
 	app.Version = version
-	app.ArgsUsage = "target"
-	app.Usage = "A CKS exam preparation command line"
+	app.ArgsUsage = "verb"
+	app.Usage = "A Comprehensive CLI for CKS exam preparation"
 	app.EnableBashCompletion = true
 	// flags := append(globalFlags, setHidden(deprecatedFlags, true)...)
 	// flags = append(flags, setHidden(imageFlags, true)...)
@@ -67,12 +82,13 @@ func NewApp(version string) *cli.App {
 	// app.Flags = flags
 	app.Commands = []*cli.Command{
 		NewClusterCommand(),
+		NewFalcoCommand(),
 	}
 
 	return app
 }
 
-// NewImageCommand is the factory method to add image command
+// NewClusterCommand is the factory method to add image command
 func NewClusterCommand() *cli.Command {
 	return &cli.Command{
 		Name:      "cluster",
@@ -120,4 +136,36 @@ func NewClusterCommand() *cli.Command {
 			},
 		},
 	}
+}
+
+func NewFalcoCommand() *cli.Command {
+	return &cli.Command{
+		Name:      "falco",
+		Aliases:   []string{"f"},
+		ArgsUsage: "falco_install",
+		Usage:     "manage cluster (support Ubuntu 20 OS only for now)",
+		Subcommands: cli.Commands{
+			{
+				Name:      "check-requirements",
+				Aliases:   []string{"req"},
+				Usage:     "check if your machines meet requirements to install the cluster",
+				ArgsUsage: "",
+				Action:    cluster.CheckRequirements,
+			},
+			{
+				Name:      "install",
+				Aliases:   []string{"i"},
+				Usage:     "install falco",
+				ArgsUsage: "",
+				Action:    falco.Install,
+				Flags:     falcoInstallFlags,
+			},
+			{
+				Name:      "tutorial",
+				Aliases:   []string{"t", "tuto"},
+				Usage:     "tuto falco",
+				ArgsUsage: "",
+				Action:    falco.Tuto,
+			},
+		}}
 }

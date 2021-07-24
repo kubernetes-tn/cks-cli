@@ -1,0 +1,18 @@
+ ____ _____ _____ ____    _ 
+/ ___|_   _| ____|  _ \  / |
+\___ \ | | |  _| | |_) | | |
+ ___) || | | |___|  __/  | |
+|____/ |_| |_____|_|     |_|
+###### CREATE POD ######
+
+kubectl create -n demo-falco -f - <<EOF
+apiVersion: v1  
+kind: Pod
+metadata:
+  name: nginx
+  namespace: demo-falco
+spec:
+  containers:
+  - name: c1
+    image: nginx
+EOF
