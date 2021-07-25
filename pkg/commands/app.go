@@ -143,7 +143,7 @@ func NewFalcoCommand() *cli.Command {
 		Name:      "falco",
 		Aliases:   []string{"f"},
 		ArgsUsage: "falco_install",
-		Usage:     "manage cluster (support Ubuntu 20 OS only for now)",
+		Usage:     "teach falco in CKS context",
 		Subcommands: cli.Commands{
 			{
 				Name:      "check-requirements",
@@ -155,7 +155,7 @@ func NewFalcoCommand() *cli.Command {
 			{
 				Name:      "install",
 				Aliases:   []string{"i"},
-				Usage:     "install falco",
+				Usage:     "install falco (support Ubuntu 20 OS only for now)",
 				ArgsUsage: "",
 				Action:    falco.Install,
 				Flags:     falcoInstallFlags,

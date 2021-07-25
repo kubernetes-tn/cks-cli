@@ -20,8 +20,8 @@ build-all:
 
 release-binary:
 	make build-all
-	aws s3 sync ./bin/ s3://$(BUCKET_BINARIES)/cks-cli/$(VERSION) --delete --region eu-west-1 
-	aws s3 sync s3://$(BUCKET_BINARIES)/cks-cli/$(VERSION) s3://$(BUCKET_BINARIES)/cks-cli/latest --delete --region eu-west-1 
+	aws s3 sync ./bin/ s3://$(BUCKET_BINARIES)/cks-cli/$(VERSION) --delete --region $(BUCKET_BINARIES_AWS_REGION)
+	aws s3 sync s3://$(BUCKET_BINARIES)/cks-cli/$(VERSION) s3://$(BUCKET_BINARIES)/cks-cli/latest --delete --region $(BUCKET_BINARIES_AWS_REGION)
 mkdocs-serve:
 	docker build -t $(MKDOCS_IMAGE) -f docs/build/Dockerfile docs/build
 	docker run --name mkdocs-serve --rm --env-file .env -v $(PWD):/docs -p $(MKDOCS_PORT):8000 $(MKDOCS_IMAGE)
@@ -32,7 +32,7 @@ mkdocs-gen:
 
 release-docs:
 	make mkdocs-gen
-	aws s3 sync ./public/ s3://$(BUCKET_WEBSITE)/ --delete --region us-east-1
+	aws s3 sync ./public/ s3://$(BUCKET_WEBSITE)/ --delete --region $(BUCKET_WEBSITE_AWS_REGION)
 
 release-infra:
 	echo bash deploy/cloudformation/apply.sh

@@ -118,11 +118,79 @@ cks cluster join --master 172.31.118.222:6443 --token ppblkq.6uafwx1q03m0cxbq --
 [kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
 [kubelet-start] Starting the kubelet
 [kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...
-
 This node has joined the cluster:
 * Certificate signing request was sent to apiserver and a response was received.
 * The Kubelet was informed of the new secure connection details.
-
 Run 'kubectl get nodes' on the control-plane to see this node join the cluster
 ```
+</details>
+
+## Falco
+
+**install falco**
+
+Identify one of your worker nodes and install falco
+
+```
+$ cks falco install
+
+```
+
+<details>
+<summary>Result</summary>
+
+```
+...
+....
+....
+
+```
+
+</details>
+
+
+**Follow falco tutorial**
+
+Enjoy a falco tutorial step by step
+
+```
+$ cks falco tuto
+
+```
+
+<details>
+<summary>Result</summary>
+
+```
+ ____    _    ____ _____ 
+/ ___|  / \  |  _ \_   _|
+\___ \ / _ \ | |_) || |  
+ ___) / ___ \|  _ < | |  
+|____/_/   \_\_| \_\|_|
+### Create Namespace for the demo ###
+
+kubectl create ns demo-falco
+
+# Are you done? [y/n]: 
+......
+.....
+....
+ _____ _   _ ____  
+| ____| \ | |  _ \ 
+|  _| |  \| | | | |
+| |___| |\  | |_| |
+|_____|_| \_|____/ 
+### Clean up namespace
+
+kubectl delete ns demo-falco
+
+
+## check another advanced tuto in this link :
+https://k8s.tn/rdiL4i
+
+# Clean up done? [y/n]: y
+END of Falco Tuto - Congrats!
+
+```
+
 </details>

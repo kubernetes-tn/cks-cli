@@ -19,6 +19,7 @@ nav:
           - CLI:
               - Overview: getting-started/cli/index.md
               - Cluster: getting-started/cli/cluster.md
+              - Falco: getting-started/cli/falco.md
   #             - Config: getting-started/cli/config.md
   #             - Filesystem: getting-started/cli/fs.md
   #             - Repository: getting-started/cli/repo.md
