@@ -3,6 +3,7 @@ KUBE_VERSION={{ .version }};
 # Source: http://kubernetes.io/docs/getting-started-guides/kubeadm/
 
 ### setup terminal
+# yum install -y bash-completion bash-completion-extras
 apt-get install -y bash-completion binutils
 echo 'colorscheme ron' >> ~/.vimrc
 echo 'set tabstop=2' >> ~/.vimrc
